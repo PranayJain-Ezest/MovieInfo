@@ -48,7 +48,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
             val poster= "https://image.tmdb.org/t/p/w500${movie.poster_path}"
             Glide.with(itemView.context)
                 .load(poster)
-                .centerCrop()
+                .fitCenter()
                 .into(posterImageView)
         }
     }
