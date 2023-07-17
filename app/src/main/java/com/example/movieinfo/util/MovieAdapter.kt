@@ -42,8 +42,12 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
             titleTextView.text = movie.title
             overviewTextView.text = movie.overview
 
+
+          /*  val poster= "https://api.themoviedb.org/3/movie/${movie.id}/w500${movie.poster_path}"*/
+
+            val poster= "https://image.tmdb.org/t/p/w500${movie.poster_path}"
             Glide.with(itemView.context)
-                .load(movie.poster_path)
+                .load(poster)
                 .centerCrop()
                 .into(posterImageView)
         }
