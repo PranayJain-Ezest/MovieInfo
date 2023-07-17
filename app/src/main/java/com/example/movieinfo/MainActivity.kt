@@ -14,12 +14,15 @@ import com.example.movieinfo.repository.MovieRepository
 import com.example.movieinfo.util.MovieAdapter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 // MainActivity.kt
 class MainActivity : AppCompatActivity() {
+    @Inject
+    lateinit var movieAdapter: MovieAdapter
 
-    private lateinit var movieAdapter: MovieAdapter
-    private lateinit var movieViewModel: MovieViewModel
+    @Inject
+    lateinit var movieViewModel: MovieViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,13 +31,13 @@ class MainActivity : AppCompatActivity() {
         val binding: ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        movieAdapter = MovieAdapter()
+        // Create the Dagger component and inject dependencies
+        val component = DaggerMovieComponent.builder()
+            .build()
+        component.inject(this)
+
         binding.resultsRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.resultsRecyclerView.adapter = movieAdapter
-
-        val movieRepository = MovieRepository(ApiService.movieApi)
-        movieViewModel =
-            ViewModelProvider(this, MovieViewModelFactory(movieRepository)).get(MovieViewModel::class.java)
 
         binding.searchButton.setOnClickListener {
             val query = binding.searchEditText.text.toString().trim()
@@ -55,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 }
+
 
 
 
