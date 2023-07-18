@@ -7,9 +7,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.movieinfo.api.MovieApiService
+import com.example.movieinfo.retrofit.MovieApiService
 import com.example.movieinfo.databinding.ActivityMainBinding
-import com.example.movieinfo.network.ApiService
+import com.example.movieinfo.retrofit.ApiService
 import com.example.movieinfo.repository.MovieRepository
 import com.example.movieinfo.util.MovieAdapter
 import retrofit2.Retrofit
@@ -31,10 +31,12 @@ class MainActivity : AppCompatActivity() {
         val binding: ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+
+
         // Create the Dagger component and inject dependencies
-        val component = DaggerMovieComponent.builder()
+        /*val component = DaggerMovieComponent.builder()
             .build()
-        component.inject(this)
+        component.inject(this)*/
 
         binding.resultsRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.resultsRecyclerView.adapter = movieAdapter

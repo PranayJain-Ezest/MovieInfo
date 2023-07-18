@@ -1,4 +1,4 @@
-package com.example.movieinfo.api
+package com.example.movieinfo.retrofit
 
 import com.example.movieinfo.model.MovieResponse
 import retrofit2.Response

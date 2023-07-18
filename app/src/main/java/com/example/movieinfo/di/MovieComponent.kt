@@ -8,5 +8,5 @@ import javax.inject.Singleton
 @Component(modules = [MovieModule::class])
 interface MovieComponent {
     fun inject(mainActivity: MainActivity)
-    // Add other injection methods for any other classes that require injection
+
 }
