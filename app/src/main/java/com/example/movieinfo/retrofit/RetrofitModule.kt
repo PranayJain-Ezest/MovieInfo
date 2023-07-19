@@ -1,27 +1,24 @@
-package com.example.movieinfo.di
+package com.example.movieinfo.retrofit
 
-import com.example.movieinfo.retrofit.ApiService
-import com.example.movieinfo.retrofit.MovieApiService
-import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-@Module
-class MovieModule {
+object RetrofitModule {
+    private const val BASE_URL = "https://api.themoviedb.org/3/"
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(ApiService.BASE_URL)
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideMovieApiService(retrofit: Retrofit): MovieApiService {
         return retrofit.create(MovieApiService::class.java)
     }
