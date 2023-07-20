@@ -1,5 +1,7 @@
 package com.example.movieinfo.model
 
+
+
 data class Movie(
     val id: Int,
     val overview: String,

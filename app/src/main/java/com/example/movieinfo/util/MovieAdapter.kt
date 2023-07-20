@@ -9,6 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movieinfo.R
 import com.example.movieinfo.model.Movie
+import dagger.Binds
+import dagger.Provides
+import javax.inject.Inject
+
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
