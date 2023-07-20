@@ -1,7 +1,8 @@
 package com.example.movieinfo.repository
 
-import com.example.movieinfo.api.MovieApiService
+import com.example.movieinfo.retrofit.MovieApiService
 import com.example.movieinfo.model.Movie
+
 
 class MovieRepository(private val movieApiService: MovieApiService) {
     suspend fun searchMovies(query: String): List<Movie> {

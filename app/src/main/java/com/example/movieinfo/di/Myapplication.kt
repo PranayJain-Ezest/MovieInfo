@@ -8,6 +8,7 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-       // movieComponent = DaggerMovieComponent.builder().build()
+
+       movieComponent = DaggerMovieComponent.builder().build()
     }
 }

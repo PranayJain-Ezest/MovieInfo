@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movieinfo.api.MovieApiService
+import com.example.movieinfo.retrofit.MovieApiService
 import com.example.movieinfo.model.Movie
 import com.example.movieinfo.repository.MovieRepository
 import kotlinx.coroutines.launch

@@ -32,11 +32,10 @@ class MainActivity : AppCompatActivity() {
             DataBindingUtil.setContentView(this, R.layout.activity_main)
 
 
-
         // Create the Dagger component and inject dependencies
-        /*val component = DaggerMovieComponent.builder()
+        val component = DaggerMovieComponent.builder()
             .build()
-        component.inject(this)*/
+        component.inject(this)
 
         binding.resultsRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.resultsRecyclerView.adapter = movieAdapter
