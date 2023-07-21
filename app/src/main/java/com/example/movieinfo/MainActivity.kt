@@ -1,34 +1,27 @@
 package com.example.movieinfo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieinfo.databinding.ActivityMainBinding
 import com.example.movieinfo.util.MovieAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 // MainActivity.kt
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    @Inject
     lateinit var movieAdapter: MovieAdapter
 
-    @Inject
-    lateinit var movieViewModel: MovieViewModel
+    private val movieViewModel: MovieViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // Create the binding object
-        val binding: ActivityMainBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_main)
-
-        binding.resultsRecyclerView.layoutManager = LinearLayoutManager(this)
-        binding.resultsRecyclerView.adapter = movieAdapter
+        val binding: ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         binding.searchButton.setOnClickListener {
             val query = binding.searchEditText.text.toString().trim()
@@ -37,23 +30,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        movieViewModel.movies.observe(this, Observer { movies ->
+        movieViewModel.movies.observe(this) { movies ->
             if (movies.isEmpty()) {
                 binding.resultsRecyclerView.visibility = View.GONE
                 binding.noResultsTextView.visibility = View.VISIBLE
             } else {
                 binding.resultsRecyclerView.visibility = View.VISIBLE
                 binding.noResultsTextView.visibility = View.GONE
-                movieAdapter.submitList(movies)
+
+                movieAdapter = MovieAdapter(list = movies)
+                binding.resultsRecyclerView.layoutManager = LinearLayoutManager(this)
+                binding.resultsRecyclerView.adapter = movieAdapter
             }
-        })
+        }
     }
 }
-
-
-
-
-
 
 
 /*
